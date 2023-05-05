@@ -148,56 +148,63 @@ int main()
         {
             case 1:
             {
-                printf("\nEnter the data:- ");
+                printf("Enter the data:- ");
                 scanf("%d",&data);
                 Insertion_At_End(data);
+                printf("%d is Inserted at End",data);
                 break;
             }
             case 2:
             {
-                printf("\nEnter the data:- ");
+                printf("Enter the data:- ");
                 scanf("%d",&data);
                 Insertion_At_Beg(data);
+                printf("%d is Inserted at Begining",data);
                 break;
             }
             case 3:
             {
-                printf("\nEnter the data & Position:- ");
+                printf("Enter the data & Position:- ");
                 scanf("%d%d",&data,&pos);
                 Insertion_At_Pos(data,pos);
+                printf("%d is Inserted at Position %d",data,pos);
                 break;
             }
             case 4:
             {
                 Deletion_At_End();
+                printf("Value Deleted at End");
                 break;
             }
             case 5:
             {
                 Deletion_At_Beg();
+                printf("Value Deleted at Begining");
                 break;
             }
             case 6:
             {
-                printf("\nEnter Position to delete");
+                printf("Enter Position to delete");
                 scanf("%d",&pos);
                 Deletion_At_Pos(pos);
+                printf("Value Deleted at Position %d",pos);
                 break;
             }
             case 7:
             {
+                printf("The Linked List is :- ");
                 Display();
                 break;
             }
             default :
             {
-                printf("\nEnter Valid Input");
+                printf("Enter Valid Input");
                 break;
             }
         }
-        printf("\nEnter your Choice :- ");
+        printf("\n\nEnter your Choice :- ");
         scanf("%d",&n);
     }
-    
+    printf("Program Terminated :- ");
     return 0;
 }
