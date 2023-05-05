@@ -205,6 +205,6 @@ int main()
         printf("\n\nEnter your Choice :- ");
         scanf("%d",&n);
     }
-    printf("Program Terminated :- ");
+    printf("Program Finished :- ");
     return 0;
 }
