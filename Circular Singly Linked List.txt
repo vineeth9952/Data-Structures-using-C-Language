@@ -96,7 +96,7 @@ void Deletion_At_Beg()
     struct Node *delnode;
     if (Head == NULL)
         printf("No node to delete");
-    else if (Head->next == NULL)
+    else if (Head->next == Head)
     {
         delnode = Head;
         Head = NULL ;
