@@ -1,0 +1,161 @@
+
+
+#include <stdio.h>
+#define N 5
+int Queue[N];
+int front = -1;
+int rear = -1;
+int IsFull()
+{
+    if(rear==N-1)
+        return 1;
+    else
+        return 0;
+}
+int IsEmpty()
+{
+    if(front==-1 && rear==-1)
+        return 1;
+    else
+        return 0;
+}
+void Enqueue(int data)
+{
+    if(IsFull())
+    {
+        printf("Queue Full");
+    }
+    else if(IsEmpty())
+    {
+        front = rear = 0;
+        Queue[rear]=data;
+        printf("%d is Enqueued\n",Queue[rear]);
+        
+    }
+    else
+    {
+        rear++ ;
+        Queue[rear]=data;
+        printf("%d is Enqueued\n",Queue[rear]);
+        
+    }
+}
+void Dequeue()
+{
+    if(IsEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else if(front==rear)
+    {
+        printf("%d is Dequeued \n",Queue[front]);
+        front = rear = -1;
+    }
+    else
+    {
+        printf("%d is Dequeued \n", Queue[front]);
+        front++;
+    }
+}
+void Peek()
+{
+    if(IsEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("%d is at front\n",Queue[front]);
+    }
+}
+void Display()
+{
+    if(IsEmpty())
+    {
+        printf("Queue is Empty\n");
+    }
+    else
+    {
+        printf("Queue:- ");
+        for(int i=front;i<=rear;i++)
+        {
+            printf("%d ",Queue[i]);
+        }
+    }
+}
+int main()
+{
+    printf("\nEnter 1 to Enqueue an Element ");
+    printf("\nEnter 2 to Dequeue an Element ");
+    printf("\nEnter 3 to Peek into Queue ");
+    printf("\nEnter 4 to check if Queue is Full ");
+    printf("\nEnter 5 to check if Queue is Empty ");
+    printf("\nEnter 6 to Display the Queue ");
+    printf("\nEnter -1 to Exit the Program ");
+    
+    int n,data;
+    printf("\nEnter your Choice :- ");
+    scanf("%d",&n);
+    
+    while(n!=-1)
+    {
+        switch(n)
+        {
+            case 1:
+            {
+                printf("Enter the data to be Enqueued :- ");
+                scanf("%d",&data);
+                Enqueue(data);
+                break;
+            }
+            case 2:
+            {
+                Dequeue();
+                break;
+            }
+            case 3:
+            {
+                Peek();
+                break;
+            }
+            case 4:
+            {
+                if(IsFull())
+                    printf("Queue is Full");
+                else
+                    printf("Queue is Not Full");
+                    break;
+            }
+            case 5:
+            {
+                if(IsEmpty())
+                    printf("Queue is Empty");
+                else
+                    printf("Queue is Not Empty");
+                    break;
+            }
+            case 6:
+            {
+                Display();
+                break;
+            }
+            default:
+            {
+                printf("Enter Valid Input");
+            }
+            
+        }
+        printf("\nEnter your Choice :- ");
+        scanf("%d",&n);
+    }
+    printf("Program Terminated");
+    return 0;
+}
+
+
+
+
+
+
+
+
