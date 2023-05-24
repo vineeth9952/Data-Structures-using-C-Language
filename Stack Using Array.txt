@@ -1,11 +1,11 @@
-// IMPLEMENTATION OF STACK USING ARRAYS
-#include <stdio.h>
-int capacity = 5;
-int stack[5];
+// Implementation of Stack using Arrays
+#include<stdio.h>
+#define N 5
+int Stack[N];
 int top=-1;
 int IsFull()
 {
-    if(top==capacity-1)
+    if(top==N-1)
         return 1;
     else
         return 0;
@@ -21,13 +21,13 @@ void Push(int data)
 {
     if(IsFull())
     {
-        printf("Stack Overflow\n");    
+        printf("Stack Overflow\n");
     }
     else
     {
         top++;
-        stack[top]=data;
-        printf("%d is Pushed onto stack\n",data);
+        Stack[top] = data ;
+        printf("%d is Pushed onto stack\n",Stack[top]);
     }
 }
 void Pop()
@@ -38,107 +38,111 @@ void Pop()
     }
     else
     {
-        printf("%d is Popped from stack\n",stack[top]);
+        printf("%d is Popped from stack\n",Stack[top]);
         top--;
     }
 }
-void Peek()
+void Top()
 {
     if(IsEmpty())
+    {
         printf("Stack is Empty\n");
+    }
     else
-        printf("The Top element is %d\n",stack[top]);
+    {
+        printf("%d is Top of stack\n",Stack[top]);
+    }
 }
 void Size()
 {
-    printf("Size of Stack is %d.\n",top+1);
+    printf("Size of Stack is %d\n",top+1);
 }
 void Display()
 {
     if(IsEmpty())
     {
-        printf("\nStack is Empty");
+        printf("Stack is Empty\n");
     }
     else
-    {   printf("Stack :- ");
+    {
+        printf("Stack :- ");
         for(int i=top;i>=0;i--)
         {
-            printf("%d ",stack[i]);
+            printf("%d ",Stack[i]);
         }
     }
 }
 int main()
 {
-    printf("\nEnter 1 to Push an Element onto stack ");
-    printf("\nEnter 2 to Pop an Element onto stack ");
-    printf("\nEnter 3 to Peek onto stack ");
-    printf("\nEnter 4 to check if Stack is Empty ");
-    printf("\nEnter 5 to check if Stack is Full ");
-    printf("\nEnter 6 to check Size of Stack ");
-    printf("\nEnter 7 to Display the elements in Stack ");
-    printf("\nEnter -1 to Exit the program ");
+    printf("\nEnter 1 to Push an Element onto Stack ");
+    printf("\nEnter 2 to Pop an Element from Stack ");
+    printf("\nEnter 3 to print top element from Stack ");
+    printf("\nEnter 4 to check is stack is Empty ");
+    printf("\nEnter 5 to check is stack is Full ");
+    printf("\nEnter 6 to print size of Stack ");
+    printf("\nEnter 7 to Display the Stack ");
+    printf("\nEnter -1 to EXIT the program ");
     
     int n,data;
-    printf("\nEnter your choice of input:- ");
+    printf("\nEnter Your Choice :- ");
     scanf("%d",&n);
+    
     while(n!=-1)
     {
         switch(n)
         {
             case 1:
             {
-                printf("Enter element to be Pushed onto stack :- ");
+                printf("Enter element to be Pushed in to stack :- ");
                 scanf("%d",&data);
                 Push(data);
                 break;
             }
             case 2:
             {
-                Pop(); break;
+                Pop();
+                break;
             }
             case 3:
             {
-                Peek(); break;
+                Top();
+                break;
             }
             case 4:
             {
                 if(IsEmpty())
-                    printf("Stack is Empty");
+                    printf("Stack is Empty\n");
                 else
-                    printf("Stack is Not Empty");
+                    printf("Stack is Not Empty\n");
                 break;
             }
             case 5:
             {
                 if(IsFull())
-                    printf("Stack is Full");
+                    printf("Stack is Full\n");
                 else
-                    printf("Stack is Not Full");
+                    printf("Stack is Not Full\n");
                 break;
             }
             case 6:
             {
-                Size(); break;
+                Size();
+                break;
             }
             case 7:
             {
-                Display(); break;
+                Display();
+                break;
             }
             default:
             {
-                printf("Invalid Input");
+                printf("Enter Valid Input");
             }
         }
-        printf("\nEnter your choice of input:- ");
+        printf("\nEnter Your Choice :- ");
         scanf("%d",&n);
     }
-    printf("Program Finished");
+    printf("Program Terminated");
     return 0;
 }
-
-
-
-
-
-
 
