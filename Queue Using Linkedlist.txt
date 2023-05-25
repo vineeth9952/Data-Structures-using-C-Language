@@ -1,5 +1,6 @@
 //Implementation of Queue using Array
 #include <stdio.h>
+#include <stdlib.h>
 #define N 5
 int f=-1;
 int r=-1;
@@ -12,14 +13,14 @@ struct Queue *Front=NULL ;
 struct Queue *Rear=NULL ;
 int IsFull()
 {
-    if(rear==N-1)   
+    if(r==N-1)   
         return 1;
     else
         return 0;
 }
 int IsEmpty()
 {
-    if(front==-1 && rear==-1)  //Front==NULL
+    if(f==-1 && r==-1)  //Front==NULL
         return 1;
     else
         return 0;
