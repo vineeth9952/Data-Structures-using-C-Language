@@ -1,85 +1,90 @@
-
-
+//Implementation of Queue using Array
 #include <stdio.h>
-#include <stdlib.h>
 #define N 5
-int front = -1 ;
-int rear = -1;
+int f=-1;
+int r=-1;
 struct Queue
 {
     int data;
     struct Queue *next ;
 };
-struct Queue *Front = NULL ;
-struct Queue *Rear  = NULL ;
+struct Queue *Front=NULL ;
+struct Queue *Rear=NULL ;
 int IsFull()
 {
-    if(rear==N-1)
+    if(rear==N-1)   
         return 1;
     else
         return 0;
 }
 int IsEmpty()
 {
-    if(rear==-1 && front==-1)
+    if(front==-1 && rear==-1)  //Front==NULL
         return 1;
     else
         return 0;
 }
-
 void Enqueue(int data)
 {
     struct Queue *newqueue;
     newqueue = (struct Queue*)malloc(1*sizeof(struct Queue));
+    
     newqueue->data = data ;
     newqueue->next = NULL ;
     
-    if (IsFull())
+    if(IsFull())
     {
-        printf("Queue is Full\n");
+        printf("Queue if Full\n");
     }
     else if(IsEmpty())
     {
-        front = rear = 0;
-        Front = newqueue;
+        f=r=0;
+        Front=newqueue ;
         Rear = newqueue;
-        rear++;
         printf("%d is Enqueued \n",Rear->data);
     }
     else
     {
         Rear->next = newqueue;
-        Rear = newqueue;
-        rear++;
-        printf("%d is Enqueued \n",Rear->data);
+        Rear = newqueue ;
+        r++;
+        printf("%d is Enqueued \n",Rear->data);  
     }
-    
 }
 void Dequeue()
 {
-    struct Queue *delqueue;
     if(IsEmpty())
     {
         printf("Queue is Empty\n");
     }
-    else 
+    else if (f==r)
     {
-        delqueue = Front;
+        f=r=-1;
+        struct Queue *delqueue;
+        delqueue = Front ;
         Front = Front->next ;
-        printf("%d is dequeued ",delqueue->data);
+        printf("%d is Dequeued \n",delqueue->data);
         free(delqueue);
-        front++;
+    }
+    else
+    {
+        struct Queue *delqueue;
+        delqueue = Front ;
+        Front = Front->next ;
+        f++;
+        printf("%d is Dequeued \n",delqueue->data);
+        free(delqueue);
     }
 }
 void Peek()
 {
-     if(IsEmpty())
+    if(IsEmpty())
     {
-        printf("Queue is empty\n");
+        printf("Queue is Empty\n");
     }
     else
     {
-        printf("%d is at front\n",Front->data);
+        printf("%d in at front\n",Front->data);
     }
 }
 void Display()
@@ -92,8 +97,8 @@ void Display()
     {
         struct Queue *temp ;
         temp = Front;
-        printf("Queue :-  ");
-        while(temp->next != NULL)
+        printf("Queue :- ");
+        while(temp->next !=NULL )
         {
             printf("%d ",temp->data);
             temp = temp->next ;
@@ -169,11 +174,4 @@ int main()
     printf("Program Terminated");
     return 0;
 }
-
-
-
-
-
-
-
 
