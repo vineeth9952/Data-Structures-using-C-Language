@@ -1,0 +1,114 @@
+///*TREE INSERTION AND TRAVERSALS*
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+	int data;
+	struct node* left;
+	struct node* right;
+};
+
+struct node* newNode(int data)
+{
+	struct node* node= (struct node*)malloc(sizeof(struct node));
+	node->data = data;
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
+}
+
+void printInorder(struct node* node)
+{
+    if (node == NULL)
+        return;
+        
+    printInorder(node->left);
+    printf("%d ", node->data);
+    printInorder(node->right);
+    
+}
+
+struct node *insert(struct node *node, int data) 
+{
+  
+    if (node == NULL) 
+        return newNode(data);
+
+    if (data < node->data)
+        node->left = insert(node->left, data);
+    else
+        node->right = insert(node->right, data);
+
+  return node;
+}
+struct node *minValueNode(struct node *node) 
+{
+  struct node *current = node;
+
+  // Find the leftmost leaf
+  while (current && current->left != NULL)
+    current = current->left;
+
+  return current;
+}
+struct node *deleteNode(struct node *root, int data) 
+{
+  
+    if (root == NULL) 
+        return root;
+
+    if (data < root->data)
+        root->left = deleteNode(root->left, data);
+    else if (data > root->data)
+        root->right = deleteNode(root->right, data);
+    else 
+    {
+      // If the node is with only one child or no child
+        if (root->left == NULL) 
+        {
+            struct node *temp = root->right;
+            free(root);
+            return temp;
+        }  
+        else if (root->right == NULL) 
+        {
+            struct node *temp = root->left;
+            free(root);
+            return temp;
+        }
+    
+      // If the node has two children
+        struct node *temp = minValueNode(root->right);
+    
+      // Place the inorder successor in position of the node to be deleted
+        root->data = temp->data;
+    
+      // Delete the inorder successor
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+int main()
+{
+	struct node *root = NULL;
+    root = insert(root, 8);
+    root = insert(root, 3);
+    root = insert(root, 1);
+    root = insert(root, 6);
+    root = insert(root, 7);
+    root = insert(root, 10);
+    root = insert(root, 14);
+    root = insert(root, 4);
+	
+	
+	printInorder(root);
+	root = deleteNode(root, 6);
+	printf("\n");
+	printInorder(root);
+	
+	return 0;
+}
