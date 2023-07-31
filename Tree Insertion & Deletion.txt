@@ -39,7 +39,7 @@ struct node *insert(struct node *node, int data)
 
     if (data < node->data)
         node->left = insert(node->left, data);
-    else
+    else 
         node->right = insert(node->right, data);
 
   return node;
@@ -91,7 +91,16 @@ struct node *deleteNode(struct node *root, int data)
     }
     return root;
 }
+struct node* search(struct node* root, int data)
+{
+    if (root == NULL || root->data == data)
+        return root;
 
+    if (root->data < data)
+        return search(root->right, data);
+ 
+    return search(root->left, data);
+}
 int main()
 {
 	struct node *root = NULL;
