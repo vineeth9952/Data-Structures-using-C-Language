@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+#define ALPHABET_SIZE 26
+ 
+struct node 
+{
+    int data;
+    struct node* next[ALPHABET_SIZE];
+};
+ 
+struct node* root = NULL;
+ 
+struct node* create_node() 
+{
+    struct node *temp = (struct node*) malloc(sizeof(struct node));
+    int x;
+    for (x = 0; x < ALPHABET_SIZE; x++)
+        temp->next[x] = NULL;
+
+    temp->data = -1;
+    return temp;
+}
+ 
+void insert_node(char key[]) 
+{
+    int len = strlen(key);
+    int index;
+    int level = 0;
+    if (root == NULL)
+        root = create_node();
+    struct node *temp = root; 
+ 
+    for (; level < len; level++) 
+    {
+        index = key[level] - 'a';
+ 
+        if (temp->next[index] == NULL) 
+        {
+            temp->next[index] = create_node(); 
+        }
+ 
+        temp = temp->next[index];
+    }
+    temp->data = level; 
+}
+ 
+int search(char key[]) 
+{
+    struct node *temp = root;
+    int len = strlen(key);
+    int level = 0;
+    for (; level < len; level++) 
+    {
+        int index = key[level] - 'a';
+        if (temp->next[index] != NULL)
+            temp = temp->next[index];
+        else
+            break;
+    }
+    if (key[level] == '\0' && temp->data != -1)
+        return temp->data;
+    
+    return -1;
+}
+int main() 
+{
+    insert_node("program");
+    insert_node("programming");
+    insert_node("progaming");
+    insert_node("progamer");
+    insert_node("producer");
+    
+    printf("Searched word is present at %d\n", search("program"));
+    printf("Searched word is present at %d\n", search("progamer"));
+    printf("Searched word is present at %d\n", search("proacting"));
+    
+    return 0;
+}
